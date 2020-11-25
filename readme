@@ -1,0 +1,62 @@
+npm i
+
+//Mysql configuration:
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    database: 'employee_data'
+//queries to be run 
+        CREATE DATABASE employee_data;
+
+        use employee_data;
+
+        CREATE  TABLE IF NOT EXISTS `employees` ( 
+        `id` BIGINT UNSIGNED AUTO_INCREMENT, 
+        `name` VARCHAR(255) NOT NULL,  
+        `age` int NOT NULL, 
+        `location` VARCHAR(255) NOT NULL, 
+        PRIMARY KEY (`id`))
+
+  npm start
+
+use following apis:
+
+//insertMany
+Post ,Content-Type:application/json 
+http://localhost:3000/employee/insertMany
+body: {
+    "dtype":1,  //1 for mongo , 0-: mysql
+    "data" :[
+            {
+                "name": "A",
+                "age": 22,
+                "location": "New York"
+            },
+            {
+                "name": "C",
+                "age": 25,
+                "location": "Seol"
+            }
+          ]
+}
+
+//inserOne
+Post ,Content-Type:application/json 
+http://localhost:3000/employee/inserOne
+body: {
+    "dtype":1,  //1 for mongo , 0- mysql
+    "data" :{
+                "name": "A",
+                "age": 22,
+                "location": "New York"
+            }
+}
+
+
+//findall
+Get ,Content-Type:application/json 
+http://localhost:3000/employee/findall/:dtype    //1 for mongo , 0- mysql
+
+//find
+Get ,Content-Type:application/json 
+http://localhost:3000/employee/find/:dtype/:id   //1 for mongo , 0- mysql
